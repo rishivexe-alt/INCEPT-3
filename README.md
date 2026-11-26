@@ -175,10 +175,9 @@ INCEPT-3/
 
 1. Clone or download this repository.
 2. Open `hardware/kicad/buck555.kicad_pro` in KiCad.
-3. If prompted, confirm that the project-local `buck555` symbol and footprint libraries are available.
-4. Open `buck555.kicad_sch` for the complete electrical schematic.
-5. Open `buck555.kicad_pcb` to inspect the two-layer board.
-6. Refer to `docs/TECHNICAL_REPORT.md` for the circuit architecture, pin connections, calculations and simulation results.
+3. Open `buck555.kicad_sch` for the complete electrical schematic.
+4. Open `buck555.kicad_pcb` to inspect the two-layer board.
+5. Refer to `docs/TECHNICAL_REPORT.md` for the circuit architecture, pin connections, calculations and simulation results.
 
 The project was authored with KiCad 7.0.11 file formats.
 
