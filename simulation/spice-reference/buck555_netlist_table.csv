@@ -1,0 +1,100 @@
+SPICE name,Nodes (in order),Value / model,Section
+Vadp,adp 0,PWL(0 0 1m 15),"input: PD adapter 15 V, cable/fuse resistance, TVS, bulk caps"
+Rsrc,adp vraw,0.1,"input: PD adapter 15 V, cable/fuse resistance, TVS, bulk caps"
+Dtvs,0 vin,DTVS15,"input: PD adapter 15 V, cable/fuse resistance, TVS, bulk caps"
+Cin1,vraw cin1,47u,"input: PD adapter 15 V, cable/fuse resistance, TVS, bulk caps"
+Rcin1,cin1 0,0.1,"input: PD adapter 15 V, cable/fuse resistance, TVS, bulk caps"
+Cin2,vraw 0,10u,"input: PD adapter 15 V, cable/fuse resistance, TVS, bulk caps"
+Rv,vraw vin,0.001,"input: PD adapter 15 V, cable/fuse resistance, TVS, bulk caps"
+Cin3,vin 0,100n,"input: PD adapter 15 V, cable/fuse resistance, TVS, bulk caps"
+Iq,vin 0,DC 4m,"12 V timer rail (behavioural 78L12-class LDO: Vdo=1.7 V, Iq=4 mA)"
+Bldo,l12 0,"V = min(12, max(V(vin)-1.7, 0))","12 V timer rail (behavioural 78L12-class LDO: Vdo=1.7 V, Iq=4 mA)"
+Rldo,l12 vcc12,1,"12 V timer rail (behavioural 78L12-class LDO: Vdo=1.7 V, Iq=4 mA)"
+Cv1,vcc12 0,10u,"12 V timer rail (behavioural 78L12-class LDO: Vdo=1.7 V, Iq=4 mA)"
+Cv2,vcc12 0,100n,"12 V timer rail (behavioural 78L12-class LDO: Vdo=1.7 V, Iq=4 mA)"
+Rkb,vcc12 ref,3.9k,"2.495 V reference (TL431-class shunt, behavioural)"
+Btl,ref 0,I = (V(ref) > 2.495) ? (V(ref)-2.495)/0.5 : 0,"2.495 V reference (TL431-class shunt, behavioural)"
+Cref,ref 0,100n,"2.495 V reference (TL431-class shunt, behavioural)"
+Vc1,ctl1 0,0,"rotary selector (single pole, non-shorting) -> M1..M3 logic rails"
+Vc2,ctl2 0,1,"rotary selector (single pole, non-shorting) -> M1..M3 logic rails"
+Vc3,ctl3 0,0,"rotary selector (single pole, non-shorting) -> M1..M3 logic rails"
+S1,vcc12 m1 ctl1 0,SWM,"rotary selector (single pole, non-shorting) -> M1..M3 logic rails"
+S2,vcc12 m2 ctl2 0,SWM,"rotary selector (single pole, non-shorting) -> M1..M3 logic rails"
+S3,vcc12 m3 ctl3 0,SWM,"rotary selector (single pole, non-shorting) -> M1..M3 logic rails"
+Rpd1,m1 0,100k,"rotary selector (single pole, non-shorting) -> M1..M3 logic rails"
+Rpd2,m2 0,100k,"rotary selector (single pole, non-shorting) -> M1..M3 logic rails"
+Rpd3,m3 0,100k,"rotary selector (single pole, non-shorting) -> M1..M3 logic rails"
+Dv1,m1 val,D1N4148,"rotary selector (single pole, non-shorting) -> M1..M3 logic rails"
+Dv2,m2 val,D1N4148,"rotary selector (single pole, non-shorting) -> M1..M3 logic rails"
+Dv3,m3 val,D1N4148,"rotary selector (single pole, non-shorting) -> M1..M3 logic rails"
+Rval,val 0,100k,"rotary selector (single pole, non-shorting) -> M1..M3 logic rails"
+RA1,vcc12 a1,953,555 timing network
+RA2,vcc12 a2,2210,555 timing network
+RA3,vcc12 a3,7500,555 timing network
+MA1,a1 m1 x,0,555 timing network
+MA2,a2 m2 x,0,555 timing network
+MA3,a3 m3 x,0,555 timing network
+D1t,x tc,D1N4148,555 timing network
+D2t,tc y,D1N4148,555 timing network
+RB1,y b1,9760,555 timing network
+RB2,y b2,8660,555 timing network
+RB3,y b3,3400,555 timing network
+MB1,b1 m1 x,0,555 timing network
+MB2,b2 m2 x,0,555 timing network
+MB3,b3 m3 x,0,555 timing network
+Ct,tc 0,4.7n,555 timing network
+Cctl,ctrl 0,10n,555 timing network
+Css,ctrl 0,2.2e-06,555 timing network
+Dss,ctrl rst,D1N4148,555 timing network
+X555,0 tc outp rst ctrl tc x vcc12,TLC555B,555 timing network
+Rr,vcc12 rst,100000.0,"interlock bus (wired-OR, active-low RESET)"
+Ruv1,vin uvs,100000.0,"interlock bus (wired-OR, active-low RESET)"
+Ruv2,uvs 0,22600.0,"interlock bus (wired-OR, active-low RESET)"
+Cuv,uvs 0,10n,"interlock bus (wired-OR, active-low RESET)"
+XUV,uvs ref rst vcc12 0,CMP,"interlock bus (wired-OR, active-low RESET)"
+Rh1,vcc12 vh,10k,"interlock bus (wired-OR, active-low RESET)"
+Rh2,vh 0,10k,"interlock bus (wired-OR, active-low RESET)"
+XVAL,val vh rst vcc12 0,CMP,"interlock bus (wired-OR, active-low RESET)"
+RT1,vout t1,18.2,"interlock bus (wired-OR, active-low RESET)"
+RT2,vout t2,44.2,"interlock bus (wired-OR, active-low RESET)"
+RT3,vout t3,147,"interlock bus (wired-OR, active-low RESET)"
+MO1,t1 m1 ovs,0,"interlock bus (wired-OR, active-low RESET)"
+MO2,t2 m2 ovs,0,"interlock bus (wired-OR, active-low RESET)"
+MO3,t3 m3 ovs,0,"interlock bus (wired-OR, active-low RESET)"
+Rlow,ovs 0,30.1,"interlock bus (wired-OR, active-low RESET)"
+Cov,ovs 0,100n,"interlock bus (wired-OR, active-low RESET)"
+XOV,ovs ref ovf vcc12 0,CMP,"interlock bus (wired-OR, active-low RESET)"
+Rovu,vcc12 ovf,2.2k,"interlock bus (wired-OR, active-low RESET)"
+Dov,ovf hold,D1N4148,"interlock bus (wired-OR, active-low RESET)"
+Roc1,vin oca,10.6k,"interlock bus (wired-OR, active-low RESET)"
+Roc2,oca 0,10k,"interlock bus (wired-OR, active-low RESET)"
+Coca,oca 0,1n,"interlock bus (wired-OR, active-low RESET)"
+Roc3,vsrc ocb,10k,"interlock bus (wired-OR, active-low RESET)"
+Roc4,ocb 0,10k,"interlock bus (wired-OR, active-low RESET)"
+Cocb,ocb 0,1n,"interlock bus (wired-OR, active-low RESET)"
+XOC,oca ocb ocf vcc12 0,CMP,"interlock bus (wired-OR, active-low RESET)"
+Rocu,vcc12 ocf,2.2k,"interlock bus (wired-OR, active-low RESET)"
+Doc,ocf hold,D1N4148,"interlock bus (wired-OR, active-low RESET)"
+Chold,hold 0,22n,"interlock bus (wired-OR, active-low RESET)"
+Rhold,hold 0,1500000.0,"interlock bus (wired-OR, active-low RESET)"
+Mhold,rst hold 0,0,"interlock bus (wired-OR, active-low RESET)"
+Rbl,rst bl,1Meg,"interlock bus (wired-OR, active-low RESET)"
+Qled,lc bl 0,Q2N2222,"interlock bus (wired-OR, active-low RESET)"
+Dled,lk lc,DLED,"interlock bus (wired-OR, active-low RESET)"
+Rled,vcc12 lk,2.7k,"interlock bus (wired-OR, active-low RESET)"
+R6,outp nb,4.7k,gate driver + PMOS
+Qdrv,gd nb 0,Q2N2222,gate driver + PMOS
+Rg,gd gate,470,gate driver + PMOS
+R7,vsrc gate,1k,gate driver + PMOS
+Dz12,gate vsrc,DZ12,gate driver + PMOS
+Rsns,vin vsrc,0.15,gate driver + PMOS
+Cfet,vsrc 0,2.2u,gate driver + PMOS
+M1,sw gate vsrc,FDS4435A,gate driver + PMOS
+D3,0 sw,DSS34,gate driver + PMOS
+L1,sw lx,0.001,gate driver + PMOS
+Rdcr,lx vo,0.1,gate driver + PMOS
+Resr,vo ce,0.05,gate driver + PMOS
+Cout,ce 0,0.00022,gate driver + PMOS
+Cob,vo 0,100n,gate driver + PMOS
+Rload,vo 0,10.0,gate driver + PMOS
+Rvo,vo vout,0.001,gate driver + PMOS

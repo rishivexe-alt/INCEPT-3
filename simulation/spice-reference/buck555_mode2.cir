@@ -1,0 +1,182 @@
+    * Selectable-output 555 buck, MODE 2 (5 V target), 15 V in, 10 ohm load, OPEN LOOP
+* Verified only by ngspice-42 batch run. NOT verified in Multisim or LTspice.
+    * ---- models (inlined from models.inc) ----
+* ====================== models.inc  (ngspice-42 syntax) ======================
+* Generic / datasheet-derived models. NONE of these are vendor-supplied SPICE models.
+* Source of each parameter set is stated in DESIGN_REPORT.md section "Model provenance".
+
+.model D1N4148 D(IS=2.52n RS=0.568 N=1.752 CJO=4p M=0.4 TT=20n BV=100 IBV=100u)
+.model DSS34   D(IS=5u RS=0.04 N=1.05 CJO=300p M=0.5 BV=40 IBV=0.5m)
+.model DZ12    D(IS=1f RS=5 N=1 BV=12 IBV=5m)
+.model DTVS15  D(IS=1n RS=0.15 N=1.0 BV=16.7 IBV=1m)
+.model DLED    D(IS=1f N=2.0 RS=5)
+
+* Standard-library style small-signal BJTs (typical, not vendor-verified)
+.model Q2N2222 NPN(IS=14.34f XTI=3 EG=1.11 VAF=74.03 BF=255.9 NE=1.307 ISE=14.34f IKF=0.2847 XTB=1.5 BR=6.092 NC=2 ISC=0 IKR=0 RC=1 CJC=7.306p MJC=0.3416 VJC=0.75 FC=0.5 CJE=22.01p MJE=0.377 VJE=0.75 TR=46.91n TF=411.1p ITF=0.6 VTF=1.7 XTF=3 RB=10)
+.model Q2N3906 PNP(IS=1.41f XTI=3 EG=1.11 VAF=18.7 BF=180.7 NE=1.5 ISE=0 IKF=0.08 XTB=1.5 BR=4.977 NC=2 ISC=0 IKR=0 RC=2.5 CJC=9.728p MJC=0.5776 VJC=0.75 FC=0.5 CJE=8.063p MJE=0.3677 VJE=0.75 TR=33.42n TF=179.3p ITF=0.4 VTF=4 XTF=6 RB=10)
+
+* 2N7002-class small NMOS: Rds(on) ~ 2 ohm @ Vgs=10 V, Vth ~ 2.1 V (datasheet-typical, generic)
+.model NM2N7002 NMOS(LEVEL=1 VTO=2.1 KP=0.13 LAMBDA=0.02 RD=0.5 RS=0.5 CBD=20p CBS=0 CGSO=20p CGDO=10p IS=1e-14)
+
+* FDS4435A: values from onsemi FDS4435A datasheet read in this session:
+*  Rds(on) 15 mohm typ @ Vgs=-10 V; Vth -1.7 V typ; Ciss 2010 pF, Coss 590 pF, Crss 260 pF
+.model FDS4435A VDMOS(PCHAN VTO=-1.7 KP=12 LAMBDA=0.01 RD=2m RS=3m RG=3 CGS=1.7n CGDMAX=700p CGDMIN=200p A=0.5 CJO=450p VJ=0.8 M=0.5 IS=1e-10 RB=10m BV=30 TT=30n)
+
+.model SWM SW(VT=0.5 VH=0.1 RON=1 ROFF=1G)
+.model SWS SW(VT=0.5 VH=0.1 RON=10m ROFF=1G)
+.model SWC SW(VT=0 VH=5m RON=50 ROFF=100Meg)
+
+* ---- behavioural comparator, open-collector output (LM339-class) ----
+.subckt CMP inp inm out vcc gnd
+S1 out gnd inm inp SWC
+.ends CMP
+
+* ---- behavioural CMOS 555 (TLC555-class) ----
+* pins: gnd trig out rst ctrl thr dis vcc
+.subckt TLC555B gnd trig out rst ctrl thr dis vcc
+Rt1 vcc ctrl 5k
+Rt2 ctrl nd 5k
+Rt3 nd gnd 5k
+Bhi hi gnd V = V(thr,gnd) > V(ctrl,gnd) ? 1 : 0
+Blo lo gnd V = V(trig,gnd) < V(nd,gnd) ? 1 : 0
+Brs rs gnd V = (V(hi,gnd) > 0.5 || V(rst,gnd) < 0.9) ? 1 : 0
+Bq  gnd q I = (V(rs,gnd) > 0.5) ? -V(q,gnd)/1k : ((V(lo,gnd) > 0.5) ? (1-V(q,gnd))/1k : ((V(q,gnd) > 0.5) ? (1-V(q,gnd))/1k : -V(q,gnd)/1k))
+Cq  q gnd 10p
+Bo  o gnd V = V(q,gnd) > 0.5 ? V(vcc,gnd) : 0
+Ro  o out 50
+Bqb qb gnd V = 1 - V(q,gnd)
+Sd  dis gnd qb gnd SDIS
+.model SDIS SW(VT=0.5 VH=0.05 RON=10 ROFF=1G)
+.ends TLC555B
+
+    * ---------------- input: PD adapter 15 V, cable/fuse resistance, TVS, bulk caps
+    Vadp adp 0 PWL(0 0 1m 15)
+    Rsrc adp vraw 0.1
+    Dtvs 0 vin DTVS15
+    Cin1 vraw cin1 47u
+    Rcin1 cin1 0 0.1
+    Cin2 vraw 0 10u
+    Rv vraw vin 0.001
+    Cin3 vin 0 100n
+    * ---------------- 12 V timer rail (behavioural 78L12-class LDO: Vdo=1.7 V, Iq=4 mA)
+    Iq vin 0 DC 4m
+    Bldo l12 0 V = min(12, max(V(vin)-1.7, 0))
+    Rldo l12 vcc12 1
+    Cv1 vcc12 0 10u
+    Cv2 vcc12 0 100n
+    * ---------------- 2.495 V reference (TL431-class shunt, behavioural)
+    Rkb vcc12 ref 3.9k
+    Btl ref 0 I = (V(ref) > 2.495) ? (V(ref)-2.495)/0.5 : 0
+    Cref ref 0 100n
+    * ---------------- rotary selector (single pole, non-shorting) -> M1..M3 logic rails
+    Vc1 ctl1 0 0
+Vc2 ctl2 0 1
+Vc3 ctl3 0 0
+    S1 vcc12 m1 ctl1 0 SWM
+    S2 vcc12 m2 ctl2 0 SWM
+    S3 vcc12 m3 ctl3 0 SWM
+    Rpd1 m1 0 100k
+    Rpd2 m2 0 100k
+    Rpd3 m3 0 100k
+    Dv1 m1 val D1N4148
+    Dv2 m2 val D1N4148
+    Dv3 m3 val D1N4148
+    Rval val 0 100k
+    * ---------------- 555 timing network
+    * charge: VCC12 -> RA_n -> sw -> X -> D1 -> tc ;  discharge: tc -> D2 -> RB_n -> sw -> X
+    RA1 vcc12 a1 953
+    RA2 vcc12 a2 2210
+    RA3 vcc12 a3 7500
+    MA1 a1 m1 x 0 NM2N7002
+    MA2 a2 m2 x 0 NM2N7002
+    MA3 a3 m3 x 0 NM2N7002
+    D1t x tc D1N4148
+    D2t tc y D1N4148
+    RB1 y b1 9760
+    RB2 y b2 8660
+    RB3 y b3 3400
+    MB1 b1 m1 x 0 NM2N7002
+    MB2 b2 m2 x 0 NM2N7002
+    MB3 b3 m3 x 0 NM2N7002
+    Ct tc 0 4.7n
+    Cctl ctrl 0 10n
+    Css ctrl 0 2.2e-06
+    Dss ctrl rst D1N4148
+    X555 0 tc outp rst ctrl tc x vcc12 TLC555B
+    * ---------------- interlock bus (wired-OR, active-low RESET)
+    Rr vcc12 rst 100000.0
+    * UV / power-good: Vin divider vs reference
+    Ruv1 vin uvs 100000.0
+    Ruv2 uvs 0 22600.0
+    Cuv uvs 0 10n
+    XUV uvs ref rst vcc12 0 CMP
+    * position valid: VAL vs VCC12/2
+    Rh1 vcc12 vh 10k
+    Rh2 vh 0 10k
+    XVAL val vh rst vcc12 0 CMP
+    * output-overvoltage + preload: selected string only
+    RT1 vout t1 18.2
+    RT2 vout t2 44.2
+    RT3 vout t3 147
+    MO1 t1 m1 ovs 0 NM2N7002
+    MO2 t2 m2 ovs 0 NM2N7002
+    MO3 t3 m3 ovs 0 NM2N7002
+    Rlow ovs 0 30.1
+    Cov ovs 0 100n
+    * over-voltage: comparator output ON (low) while OK; when ovs > ref it releases and the pull-up charges HOLD
+    XOV ovs ref ovf vcc12 0 CMP
+    Rovu vcc12 ovf 2.2k
+    Dov ovf hold D1N4148
+    * over-current: ratiometric detector. V_a = 0.4856*Vin ; V_b = 0.5*Vsrc ; fault when Vin-Vsrc > ~3% of Vin
+    Roc1 vin oca 10.6k
+    Roc2 oca 0 10k
+    Coca oca 0 1n
+    Roc3 vsrc ocb 10k
+    Roc4 ocb 0 10k
+    Cocb ocb 0 1n
+    XOC oca ocb ocf vcc12 0 CMP
+    Rocu vcc12 ocf 2.2k
+    Doc ocf hold D1N4148
+    * hold-off pulse stretcher -> pulls RESET low
+    Chold hold 0 22n
+    Rhold hold 0 1500000.0
+    Mhold rst hold 0 0 NM2N7002
+    * run LED
+    Rbl rst bl 1Meg
+    Qled lc bl 0 Q2N2222
+    Dled lk lc DLED
+    Rled vcc12 lk 2.7k
+    * ---------------- gate driver + PMOS
+    R6 outp nb 4.7k
+    Qdrv gd nb 0 Q2N2222
+    Rg gd gate 470
+    R7 vsrc gate 1k
+    Dz12 gate vsrc DZ12
+    Rsns vin vsrc 0.15
+    Cfet vsrc 0 2.2u
+    M1 sw gate vsrc FDS4435A
+    D3 0 sw DSS34
+    L1 sw lx 0.001
+    Rdcr lx vo 0.1
+    Resr vo ce 0.05
+    Cout ce 0 0.00022
+    Cob vo 0 100n
+    Rload vo 0 10.0
+    * vout alias for sensing strings
+    Rvo vo vout 0.001
+
+
+    .options method=gear reltol=2m abstol=1n vntol=100u gmin=1e-10 itl4=200 maxord=2
+    .tran 50n 0.12 0 1e-07 uic
+    .control
+run
+meas tran vo_avg AVG v(vo) from=100m to=120m
+meas tran vo_pp PP v(vo) from=100m to=120m
+meas tran vo_peak MAX v(vo) from=0 to=120m
+meas tran il_max MAX i(l1) from=100m to=120m
+meas tran il_min MIN i(l1) from=100m to=120m
+meas tran il_peak_startup MAX i(l1) from=0 to=120m
+meas tran iin_avg AVG i(vadp) from=100m to=120m
+write mode2.raw
+.endc
+.end

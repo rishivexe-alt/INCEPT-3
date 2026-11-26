@@ -1,0 +1,37 @@
+== no-load / 20 V
+nl1 {'running': True, 'vavg': 3.526, 'vpp': 0.008, 'ilmin': 0.014, 'ilmax': 0.124, 'f': 25320.36, 'eff': 0.0, 'vsrc_min': 14.972} frac RESET low (60-90ms): 0.0 peak vo 3.53
+nl2 {'running': True, 'vavg': 5.271, 'vpp': 0.007, 'ilmin': -0.001, 'ilmax': 0.136, 'f': 25020.166, 'eff': 0.0, 'vsrc_min': 14.969} frac RESET low (60-90ms): 0.0 peak vo 5.274
+nl3 {'running': True, 'vavg': 12.636, 'vpp': 0.008, 'ilmin': 0.03, 'ilmax': 0.108, 'f': 25074.594, 'eff': 0.0, 'vsrc_min': 14.973} frac RESET low (60-90ms): 0.0 peak vo 12.641
+v20_1 {'running': False, 'vavg': 0.0} frac RESET low (60-90ms): 0.994 peak vo 4.187
+v20_3 {'running': False, 'vavg': 0.002} frac RESET low (60-90ms): 0.744 peak vo 14.895
+== short circuit (applied at 90 ms)
+short1 IL peak 4.28 A hiccup events 10 first events (ms) [ 1.5  19.72 32.03 44.32 56.61] mean Iin 0.119 A max Iin 3.08 frac time RESET low 0.68 pre-short Vo 3.30
+short2 IL peak 4.04 A hiccup events 11 first events (ms) [ 0.8  19.95 31.29 42.74 54.19] mean Iin 0.090 A max Iin 3.15 frac time RESET low 0.80 pre-short Vo 4.97
+short3 IL peak 3.75 A hiccup events 10 first events (ms) [ 0.22 30.32 42.3  54.39 66.47] mean Iin 0.057 A max Iin 3.31 frac time RESET low 0.95 pre-short Vo 11.94
+== overload 12 V mode, load stepped 10 -> 2.5 ohm at 90 ms (4.8 A nominal)
+IL peak 3.39 events 8 first ms [ 0.59 29.16 35.55 41.93] Vo min -0.00
+IL at first trip 3.08 A
+== OVP injection (1 A into output for 4 ms at 90 ms)
+ovp1 Vo before 3.30 Vo peak 7.83 RESET low events at ms [0.25] Vo at 120 ms 0.00
+ovp2 Vo before 4.96 Vo peak 8.46 RESET low events at ms [0.41] Vo at 120 ms 0.00
+ovp3 Vo before 11.95 Vo peak 13.80 RESET low events at ms [] Vo at 120 ms 11.94
+== selector transitions
+sel13 before Vo 3.30..3.30 IL 0.34..0.45 RESET min 10.92 max 10.92
+sel13 break Vo 0.00..3.31 IL -0.00..0.44 RESET min 0.11 max 10.92
+sel13 after+0-15ms Vo 0.00..11.39 IL -0.00..2.04 RESET min 0.11 max 10.93
+sel13 settled Vo 11.94..11.95 IL 1.22..1.30 RESET min 10.93 max 10.93
+sel13 Vo peak overall after 90ms: 11.95 IL peak 2.04
+sel31 before Vo 11.94..11.95 IL 1.22..1.30 RESET min 10.93 max 10.93
+sel31 break Vo 0.00..11.95 IL -0.01..1.27 RESET min 0.11 max 10.93
+sel31 after+0-15ms Vo 0.00..3.01 IL -0.00..0.49 RESET min 0.11 max 10.93
+sel31 settled Vo 3.30..3.30 IL 0.34..0.45 RESET min 10.92 max 10.92
+sel31 Vo peak overall after 90ms: 11.95 IL peak 1.27
+== input dropout 15 V -> 10 V for 5 ms at 90 ms (mode 2)
+Vo min 0.37 Vo max after recovery 4.97 IL max 0.63
+RESET low from 90.40 to 95.35 ms
+ Vo @88 ms = 4.969
+ Vo @100 ms = 3.132
+ Vo @110 ms = 4.403
+ Vo @120 ms = 4.810
+ Vo @140 ms = 4.957
+ Vo @159 ms = 4.967

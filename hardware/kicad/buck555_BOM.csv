@@ -1,0 +1,93 @@
+Qty,References,Value,Footprint,Manufacturer,MPN,Description,MPN status
+1,J1,USB-C PD in,Connector_USB:USB_C_Receptacle_GCT_USB4125-xx-x_6P_TopMnt_Horizontal,GCT,USB4125-GF-A,USB-C power-only 6-pin receptacle,generic/from memory - verify before ordering
+1,R1,5.1k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-075K1L,"CC1 Rd (per IP2721 datasheet figure - verify, see risks)",generic/from memory - verify before ordering
+1,R2,5.1k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-075K1L,"CC2 Rd (per IP2721 datasheet figure - verify, see risks)",generic/from memory - verify before ordering
+1,R37,1M,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-071ML,USB shield bleed,generic/from memory - verify before ordering
+1,C22,4.7n,Capacitor_SMD:C_0603_1608Metric,Yageo,CC0603KRX7R9BB472,USB shield 50 V X7R,generic/from memory - verify before ordering
+1,U1,IP2721,Package_SO:TSSOP-16_4.4x5mm_P0.65mm,Injoinic,IP2721,"USB-C PD sink (trigger), SEL floating = 15 V request",checked against datasheet
+1,Q1,AO3400A,Package_TO_SOT_SMD:SOT-23,Alpha & Omega,AO3400A,PD path NMOS 30 V 5.7 A,generic/from memory - verify before ordering
+1,C1,1u,Capacitor_SMD:C_0603_1608Metric,Murata,GRM188R71H105KA61D,IP2721 VIN cap 50 V X7R,generic/from memory - verify before ordering
+1,C2,1u,Capacitor_SMD:C_0603_1608Metric,Murata,GRM188R71H105KA61D,IP2721 VBUS cap 50 V X7R,generic/from memory - verify before ordering
+1,D1,SMAJ15A,Diode_SMD:D_SMA,Littelfuse,SMAJ15A,"TVS 15 V standoff, 24.4 V clamp",generic/from memory - verify before ordering
+1,F1,3A hold,Fuse:Fuse_1812_4532Metric,Bourns,MF-MSMF300/16X-2,"Resettable fuse 3 A hold, >=16 V (verify rating)",generic/from memory - verify before ordering
+1,C3,47u,Capacitor_SMD:CP_Elec_6.3x7.7,Panasonic,EEE-FK1E470P,Input bulk 25 V electrolytic,generic/from memory - verify before ordering
+1,C4,10u,Capacitor_SMD:C_1210_3225Metric,Murata,GRM32ER71E106KA12L,Input ceramic 25 V X7R,generic/from memory - verify before ordering
+1,C5,100n,Capacitor_SMD:C_0603_1608Metric,Yageo,CC0603KRX7R9BB104,Input HF decoupling 50 V X7R,generic/from memory - verify before ordering
+1,R3,0.15,Resistor_SMD:R_2512_6332Metric,Bourns,CRM2512-FX-R150ELF,Current-sense resistor 1 W 1%,generic/from memory - verify before ordering
+1,C6,2.2u,Capacitor_SMD:C_1206_3216Metric,Murata,GRM31CR71E225KA73L,Switch-node input cap 25 V X7R,generic/from memory - verify before ordering
+1,C7,100n,Capacitor_SMD:C_0603_1608Metric,Yageo,CC0603KRX7R9BB104,Switch HF cap,generic/from memory - verify before ordering
+1,U2,L78L12,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,STMicroelectronics,L78L12ACD13TR,12 V timer/logic rail (555 max supply 15 V),generic/from memory - verify before ordering
+5,C8 C10 C11 C16 C21,100n,Capacitor_SMD:C_0603_1608Metric,Yageo,CC0603KRX7R9BB104,Capacitor 100n,generic/from memory - verify before ordering
+1,C9,10u,Capacitor_SMD:C_1206_3216Metric,Murata,GRM31CR71E106KA12L,12 V rail 25 V X7R,generic/from memory - verify before ordering
+1,U3,TL431,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,Texas Instruments,TL431AIDR,2.495 V reference (K tied to REF),generic/from memory - verify before ordering
+1,R4,3.9k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-073K9L,TL431 bias ~2.4 mA,generic/from memory - verify before ordering
+1,U4,LM339,Package_SO:SOIC-14_3.9x8.7mm_P1.27mm,Texas Instruments,LM339DR,"Quad comparator, open-collector (UV, selector-valid, OV, OC)",generic/from memory - verify before ordering
+1,R15,100k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-07100KL,RESET pull-up (OR-wired interlock bus),generic/from memory - verify before ordering
+1,R16,100k,Resistor_SMD:R_0603_1608Metric,Yageo,RT0603BRD07100KL,UV divider top 0.1%,generic/from memory - verify before ordering
+1,R17,22.6k,Resistor_SMD:R_0603_1608Metric,Yageo,RT0603BRD0722K6L,UV divider bottom 0.1%,generic/from memory - verify before ordering
+1,C15,10n,Capacitor_SMD:C_0603_1608Metric,Yageo,CC0603KRX7R9BB103,Capacitor 10n,generic/from memory - verify before ordering
+2,R18 R19,10k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-0710KL,Resistor 10k 1%,generic/from memory - verify before ordering
+1,U5,TLC555,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,Texas Instruments,TLC555CDR,CMOS 555 astable PWM generator (2-15 V),checked against datasheet
+1,C12,4.7n,Capacitor_SMD:C_0603_1608Metric,Murata,GCM1885C1H472JA16D,Timing cap C0G/NP0 50 V,generic/from memory - verify before ordering
+1,C13,10n,Capacitor_SMD:C_0603_1608Metric,Yageo,CC0603KRX7R9BB103,CONTROL pin 10 nF,generic/from memory - verify before ordering
+1,C14,2.2u,Capacitor_SMD:C_0805_2012Metric,Murata,GRM21BR71A225KA01L,Soft-start cap 10 V X7R,generic/from memory - verify before ordering
+1,D2,1N4148W,Diode_SMD:D_SOD-123,Diodes Inc.,1N4148W-7-F,Charge-steering diode (X -> TC),generic/from memory - verify before ordering
+1,D3,1N4148W,Diode_SMD:D_SOD-123,Diodes Inc.,1N4148W-7-F,Discharge-steering diode (TC -> Y),generic/from memory - verify before ordering
+1,D4,1N4148W,Diode_SMD:D_SOD-123,Diodes Inc.,1N4148W-7-F,Soft-start reset diode (CTRL -> RST),generic/from memory - verify before ordering
+1,R5,953,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-07953RL,RA mode 1,generic/from memory - verify before ordering
+1,Q2,2N7002,Package_TO_SOT_SMD:SOT-23,onsemi,2N7002,RA select mode 1,generic/from memory - verify before ordering
+1,R8,9.76k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-079K76L,RB mode 1,generic/from memory - verify before ordering
+1,Q5,2N7002,Package_TO_SOT_SMD:SOT-23,onsemi,2N7002,RB select mode 1,generic/from memory - verify before ordering
+1,R6,2.21k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-072K21L,RA mode 2,generic/from memory - verify before ordering
+1,Q3,2N7002,Package_TO_SOT_SMD:SOT-23,onsemi,2N7002,RA select mode 2,generic/from memory - verify before ordering
+1,R9,8.66k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-078K66L,RB mode 2,generic/from memory - verify before ordering
+1,Q6,2N7002,Package_TO_SOT_SMD:SOT-23,onsemi,2N7002,RB select mode 2,generic/from memory - verify before ordering
+1,R7,7.5k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-077K5L,RA mode 3,generic/from memory - verify before ordering
+1,Q4,2N7002,Package_TO_SOT_SMD:SOT-23,onsemi,2N7002,RA select mode 3,generic/from memory - verify before ordering
+1,R10,3.4k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-073K4L,RB mode 3,generic/from memory - verify before ordering
+1,Q7,2N7002,Package_TO_SOT_SMD:SOT-23,onsemi,2N7002,RB select mode 3,generic/from memory - verify before ordering
+1,J3,ROTARY,Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical,Generic,2.54mm 1x4 header,"Off-board rotary switch: 1 pole x 3 pos, NON-shorting (break-before-make)","spec only, no verified MPN"
+1,R11,100k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-07100KL,M1 pull-down,generic/from memory - verify before ordering
+1,R12,100k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-07100KL,M2 pull-down,generic/from memory - verify before ordering
+1,R13,100k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-07100KL,M3 pull-down,generic/from memory - verify before ordering
+3,D5 D6 D7,1N4148W,Diode_SMD:D_SOD-123,Diodes Inc.,1N4148W-7-F,Selector-valid OR diode,generic/from memory - verify before ordering
+1,R14,100k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-07100KL,VAL pull-down,generic/from memory - verify before ordering
+1,R20,18.2,Resistor_SMD:R_2512_6332Metric,Yageo,RC2512FR-0718R2L,Preload/OV-sense top resistor mode 1 (1 W),generic/from memory - verify before ordering
+1,Q8,2N7002,Package_TO_SOT_SMD:SOT-23,onsemi,2N7002,Preload/OV string select mode 1,generic/from memory - verify before ordering
+1,R21,44.2,Resistor_SMD:R_2512_6332Metric,Yageo,RC2512FR-0744R2L,Preload/OV-sense top resistor mode 2 (1 W),generic/from memory - verify before ordering
+1,Q9,2N7002,Package_TO_SOT_SMD:SOT-23,onsemi,2N7002,Preload/OV string select mode 2,generic/from memory - verify before ordering
+1,R22,147,Resistor_SMD:R_2512_6332Metric,Yageo,RC2512FR-07147RL,Preload/OV-sense top resistor mode 3 (1 W),generic/from memory - verify before ordering
+1,Q10,2N7002,Package_TO_SOT_SMD:SOT-23,onsemi,2N7002,Preload/OV string select mode 3,generic/from memory - verify before ordering
+1,R23,30.1,Resistor_SMD:R_2512_6332Metric,Yageo,RC2512FK-0730R1L,OV sense low-side 1 W,generic/from memory - verify before ordering
+2,R24 R25,2.2k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-072K2L,Resistor 2.2k 1%,generic/from memory - verify before ordering
+1,D8,1N4148W,Diode_SMD:D_SOD-123,Diodes Inc.,1N4148W-7-F,OV -> hold-off,generic/from memory - verify before ordering
+1,D9,1N4148W,Diode_SMD:D_SOD-123,Diodes Inc.,1N4148W-7-F,OC -> hold-off,generic/from memory - verify before ordering
+1,R26,10.6k,Resistor_SMD:R_0603_1608Metric,Yageo,RT0603BRD0710K6L,OC divider 0.1%,generic/from memory - verify before ordering
+3,R27 R28 R29,10k,Resistor_SMD:R_0603_1608Metric,Yageo,RT0603BRD0710KL,OC divider 0.1%,generic/from memory - verify before ordering
+2,C17 C18,1n,Capacitor_SMD:C_0603_1608Metric,Yageo,CC0603KRX7R9BB102,Capacitor 1n,generic/from memory - verify before ordering
+1,C19,22n,Capacitor_SMD:C_0603_1608Metric,Yageo,CC0603KRX7R9BB223,Hold-off timing cap,generic/from memory - verify before ordering
+1,R30,1.5M,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-071M5L,Hold-off timing resistor,generic/from memory - verify before ordering
+1,Q11,2N7002,Package_TO_SOT_SMD:SOT-23,onsemi,2N7002,Hold-off RESET pull-down,generic/from memory - verify before ordering
+1,R31,1M,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-071ML,Resistor 1M 1%,generic/from memory - verify before ordering
+1,Q12,MMBT2222A,Package_TO_SOT_SMD:SOT-23,onsemi,MMBT2222ALT1G,Run-LED driver,generic/from memory - verify before ordering
+1,D12,GREEN,LED_SMD:LED_0603_1608Metric,Wurth,150060GS75000,Run indicator,generic/from memory - verify before ordering
+1,R32,2.7k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-072K7L,Resistor 2.7k 1%,generic/from memory - verify before ordering
+1,R33,4.7k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-074K7L,NPN base resistor R6,generic/from memory - verify before ordering
+1,Q13,MMBT2222A,Package_TO_SOT_SMD:SOT-23,onsemi,MMBT2222ALT1G,Gate driver NPN (2N2222A class),generic/from memory - verify before ordering
+1,R34,470,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-07470RL,Gate series resistor (limits clamp current),generic/from memory - verify before ordering
+1,R35,1k,Resistor_SMD:R_0603_1608Metric,Yageo,RC0603FR-071KL,Gate pull-up R7,generic/from memory - verify before ordering
+1,D10,12V,Diode_SMD:D_SOD-123,Diodes Inc.,MMSZ5242B-7-F,Gate-source clamp 12 V (FDS4435A VGS max 20 V),generic/from memory - verify before ordering
+1,M1,FDS4435A,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,onsemi,FDS4435A,P-MOSFET -30 V -8.8 A 20 mohm SO-8 (verify pinout vs datasheet drawing),checked against datasheet
+1,D11,SS34,Diode_SMD:D_SMA,Vishay,SS34-E3/57T,Schottky 40 V 3 A freewheel diode,generic/from memory - verify before ordering
+1,L1,1mH,Inductor_THT:L_Radial_D21.0mm_P19.00mm,,,"1 mH, Isat >= 4.5 A (-30% L), Irms >= 2 A, DCR <= 0.12 ohm. NO MPN CHOSEN - see notes","spec only, no verified MPN"
+1,C20,220u,Capacitor_SMD:CP_Elec_8x10,Panasonic,EEE-FK1E221P,Output bulk 25 V low-ESR (check ripple current),generic/from memory - verify before ordering
+1,J2,VOUT,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",Phoenix Contact,1729128,Output terminal 5.08 mm,generic/from memory - verify before ordering
+1,TP1,PWM (555 OUT),TestPoint:TestPoint_Pad_D2.0mm,,,Test point PWM (555 OUT),"spec only, no verified MPN"
+1,TP2,PMOS gate,TestPoint:TestPoint_Pad_D2.0mm,,,Test point PMOS gate,"spec only, no verified MPN"
+1,TP3,Switch node,TestPoint:TestPoint_Pad_D2.0mm,,,Test point Switch node,"spec only, no verified MPN"
+1,TP4,Output,TestPoint:TestPoint_Pad_D2.0mm,,,Test point Output,"spec only, no verified MPN"
+1,TP5,GND,TestPoint:TestPoint_Pad_D2.0mm,,,Test point GND,"spec only, no verified MPN"
+1,TP6,12 V rail,TestPoint:TestPoint_Pad_D2.0mm,,,Test point 12 V rail,"spec only, no verified MPN"
+1,TP7,Interlock bus,TestPoint:TestPoint_Pad_D2.0mm,,,Test point Interlock bus,"spec only, no verified MPN"
+1,TP8,Input rail,TestPoint:TestPoint_Pad_D2.0mm,,,Test point Input rail,"spec only, no verified MPN"
+1,TP9,Hold-off,TestPoint:TestPoint_Pad_D2.0mm,,,Test point Hold-off,"spec only, no verified MPN"

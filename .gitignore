@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Simulation-generated data
+*.raw
+*.log
+*.temp
+*.bak
+*.net~
+
+# KiCad lock / backup files
+*-backups/
+*.lck
+*.kicad_prl
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,13 @@
+** Drc report for ${KIPRJMOD}/buck555.kicad_pcb **
+** Created on 2026-11-25 19:18:39 **
+
+** Found 1 DRC violations **
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; Severity: warning
+    @(6.0000 mm, 87.5000 mm): PCB Text 'TP1 PWM  TP2 GATE  TP3 SW  TP4 VOU...' on F.Silkscreen
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** End of Report **
