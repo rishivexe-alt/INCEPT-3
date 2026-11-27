@@ -8,4 +8,4 @@
 
 **Design:** 15 V input, selectable 3.3 V / 5 V / 12 V open-loop buck converter using TLC555 PWM generation and a discrete P-channel MOSFET power stage.
 
-The repository preserves the supplied circuit design, generated KiCad artifacts, simulation sources, result plots, manufacturing exports and technical documentation
+The repository preserves the supplied circuit design, generated KiCad artifacts, simulation sources, result plots, manufacturing exports and technical documentation.
